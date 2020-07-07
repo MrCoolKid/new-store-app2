@@ -15,14 +15,11 @@ class ProductForm(FlaskForm):
     group = QuerySelectField('Group Name',query_factory=group_list,allow_blank=False,get_label='groupname')
     brand = QuerySelectField('Brand Name',query_factory=brand_list,allow_blank=False,get_label='brandname')
     name = StringField('Product Name',validators=[InputRequired()])
-<<<<<<< HEAD
     photo = FileField('Product Photo',validators=[InputRequired(),FileAllowed(['jpg','png','jpeg'],message="File must be jpg, png or jpeg!")])
-=======
     photo = FileField('Product Photo',validators=[InputRequired(),FileAllowed(['jpg','png','jpeg'])])
     price = IntegerField('Product Price',validators=[InputRequired()])
 
 class EditProductForm(FlaskForm):
     name = StringField('Product Name', validators=[InputRequired()])
     photo = FileField('Product Photo',validators=[FileAllowed(['jpg','png','jpeg'])])
->>>>>>> 311df5dfebca6300024ff4085c2da0cbc391d927
     price = IntegerField('Product Price',validators=[InputRequired()])
