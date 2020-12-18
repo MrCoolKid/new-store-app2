@@ -1,58 +1,54 @@
-{% extends "base2.html" %}
-{% block title %}Edit Product Group{% endblock %}
+
+{% extends "/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 
-                <!--Content-->
-                <div class="col-lg-10">
-                    <!--Content Wrapper-->
-                    <div class="box-content">
-                        <!--Content Header-->
-                        <div class="box-content-header bg-primary">
-                            <h4 class="text-white text-center">Edit Product Group</h4>
-                        </div>
-                        <!--/Content Header-->
+<div class="box-content">
 
-                        <!--Content Body-->
-                        <div class="box-body">
-                            <!--Nav Search-->
+    <!--Content Body-->
+    <div class="box-body">
+        <!--Nav Search-->
 
-                            {% for mess  in get_flashed_messages() %}
-                                <div class="alert alert-warning alert-dismissible fade show mt-3" role='alert'>
-                                  <button type="button" class="fade close" data-dismiss='alert' aria-label='Close'>
-                                  <span aria-hidden="false">&times;</span>
-                                  </button>
-                                  {{mess}}
-                                </div>
-                            {% endfor %}
-                            <nav class="navbar navbar-light float-right p-3">
-
-                            </nav>
-                            <!--/Nav Search-->
-
-                            <!--Table-->
-                            <form  action="{{url_for('groups.edit',group_id=grup_select.id)}}" method="POST">
-                                {{form.hidden_tag()}}
-                                <div class="box-content-body">
-                                  <div class="form-group">
-                                      <label for="groupname">{{form.groupname.label}}</label>
-                                      {{form.groupname(class="form-control form-control-md")}}
-                                  </div>
-                                  <button class="btn btn-warning btn-block" type="submit">Update</button>
-                                </div>
-                            </form>
-                            </div>
-                            <!--/Table-->
-                          </div>
-                        <!--/Content Body-->
-                    </div>
-                    <!--/Content Wrapper-->
-                </div>
-                <!--/Content-->
+        {% for mess  in get_flashed_messages() %}
+            <div class="alert alert-warning alert-dismissible fade show mt-3" role='alert'>
+              <button type="button" class="fade close" data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden="false">&times;</span>
+              </button>
+              {{mess}}
             </div>
-        <!--Container-->
+        {% endfor %}
+        <nav class="navbar navbar-light float-right p-3">
 
-    </section>
-    <!--Sidebar Akhir-->
+        </nav>
+        <!--/Nav Search-->
 
-{% endblock %}
+        <!--Table-->
+        <form  action="{{url_for('groups.edit',group_id=grup_select.id)}}" method="POST">
+            {{form.hidden_tag()}}
+            <div class="box-content-body">
+              <div class="form-group">
+                  <label for="groupname">{{form.groupname.label}}</label>
+                  {{form.groupname(class="form-control form-control-md")}}
+              </div>
+              <button class="btn btn-warning btn-block" type="submit">Update</button>
+            </div>
+        </form>
+        </div>
+        <!--/Table-->
+      </div>
+    <!--/Content Body-->
+</div>
+<!--/Content Wrapper-->
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+  <script src="/static/assets/js/demo_1/dashboard.js"></script>
+{% endblock javascripts %}

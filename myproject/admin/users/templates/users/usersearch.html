@@ -1,83 +1,77 @@
-{% extends "base2.html" %}
 {% from "macro_pagination.html" import pagination_search %}
-{% block title %}Admin Page{% endblock %}
+{% extends "/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 
-                <!--Content-->
-                <div class="col-lg-10">
-                    <!--Content Wrapper-->
-                    <div class="box-content">
-                        <!--Content Header-->
-                        <div class="box-content-header bg-primary">
-                            <h4 class="text-white text-center">Users</h4>
-                        </div>
-                        {% for mess in get_flashed_messages() %}
-                            <div class="alert alert-warning alert-dismissible fade show mt-3" role='alert'>
-                              <button type="button" class="fade close" data-dismiss='alert' aria-label='Close'>
-                              <span aria-hidden="false">&times;</span>
-                              </button>
-                              {{mess}}
-                            </div>
-                        {% endfor %}
-                        <!--/Content Header-->
-
-                        <!--Content Body-->
-                        <div class="box-body">
-                            <!--Nav Search-->
-                          <nav class="navbar navbar-light float-right p-3">
-                                <form class="form-inline" method="POST">
-                                    {{form.hidden_tag()}}
-                                    {{form.search(class="form-control mr-sm-2 border-primary")}}
-                                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
-                                </form>
-                            </nav>
-                            <!--/Nav Search-->
-
-                            <!--Table-->
-                            <div class="p-3">
-                                <a href="{{url_for('users.add')}}" class="btn btn-primary" >Add Users</a>
-                                <table id="example" class="table table-responsive-md table-striped table-bordered">
-                                    <thead>
-                                        <tr class="text-center">
-                                            <th class="text-primary font-weight-bold">#</th>
-                                            <th class="text-primary font-weight-bold">Username</th>
-                                            <th class="text-primary font-weight-bold">Role</th>
-                                            <th class="text-primary font-weight-bold"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for user in users_search.items %}
-                                            <tr class="text-center">
-                                                <td>{{user.id}}</td>
-                                                <td>{{user.username}}</td>
-                                                <td>{{user.role}}</td>
-                                                <td class="text-center">
-                                                    <a class="btn btn-warning" href="{{url_for('users.edit',user_id=user.id)}}">Edit</a>
-                                                    <a class="btn btn-success" href="{{url_for('users.password',user_id=user.id)}}">Password</a>
-                                                    <a class="btn btn-danger" href="{{url_for('users.delete',user_id=user.id)}}">Hapus</a>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--/Table-->
-
-                            <!--Pagination-->
-                            {{pagination_search(users_search,'users.user',users_search.username)}}
-                            <!--/Pagination-->
-                        </div>
-                        <!--/Content Body-->
-                    </div>
-                    <!--/Content Wrapper-->
-                </div>
-                <!--/Content-->
-            </div>
+    {% for mess in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show mt-3" role='alert'>
+          <button type="button" class="fade close" data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden="false">&times;</span>
+          </button>
+          {{mess}}
         </div>
-        <!--Container-->
-    </section>
-    <!--Sidebar Akhir-->
+    {% endfor %}
+    <!--/Content Header-->
 
+    <!--Content Body-->
+    <div class="box-body">
+        <!--Nav Search-->
+      <nav class="navbar navbar-light float-right p-3">
+            <form class="form-inline" method="POST">
+                {{form.hidden_tag()}}
+                {{form.search(class="form-control mr-sm-2 border-primary")}}
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
+            </form>
+        </nav>
+        <!--/Nav Search-->
 
-{% endblock %}
+        <!--Table-->
+        <div class="p-3">
+            <a href="{{url_for('users.add')}}" class="btn btn-primary" >Add Users</a>
+            <table id="example" class="table table-responsive-md table-striped table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th class="text-primary font-weight-bold">#</th>
+                        <th class="text-primary font-weight-bold">Username</th>
+                        <th class="text-primary font-weight-bold">Role</th>
+                        <th class="text-primary font-weight-bold"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users_search.items %}
+                        <tr class="text-center">
+                            <td>{{user.id}}</td>
+                            <td>{{user.username}}</td>
+                            <td>{{user.role}}</td>
+                            <td class="text-center">
+                                <a class="btn btn-warning" href="{{url_for('users.edit',user_id=user.id)}}">Edit</a>
+                                <a class="btn btn-success" href="{{url_for('users.password',user_id=user.id)}}">Password</a>
+                                <a class="btn btn-danger" href="{{url_for('users.delete',user_id=user.id)}}">Hapus</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--/Table-->
+
+        <!--Pagination-->
+        {{pagination_search(users_search,'users.user',users_search.username)}}
+        <!--/Pagination-->
+    </div>
+    <!--/Content Body-->
+</div>
+<!--/Content Wrapper-->
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+  <script src="/static/assets/js/demo_1/dashboard.js"></script>
+{% endblock javascripts %}

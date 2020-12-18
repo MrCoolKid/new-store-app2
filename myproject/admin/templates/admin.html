@@ -1,112 +1,20 @@
-{% extends "base2.html" %}
-{% block title %}Admin Page{% endblock %}
+
+{% extends "/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
-<!--Content-->
-    <div class="col-lg-10">
-        <!--Content Wrapper-->
-        <div class="box-content">
-            <!--Content Header-->
-            <div class="box-content-header bg-primary">
-                <h4 class="text-white text-center">All Report</h4>
-            </div>
-            <!--/Content Header-->
 
-            <!--Content Body-->
-            <div class="box-body">
-                <!--Nav Search-->
-                <nav class="navbar navbar-light float-right p-3">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2 border-primary" type="search" placeholder="Cari"
-                            aria-label="Search">
-                        <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
-                    </form>
-                </nav>
-                <!--/Nav Search-->
+  <div class="">
 
-                <!--Table-->
-                <div class="p-3">
-                  {% for mess  in get_flashed_messages() %}
-                      <div class="alert alert-warning alert-dismissible fade show mt-3" role='alert'>
-                        <button type="button" class="fade close" data-dismiss='alert' aria-label='Close'>
-                        <span aria-hidden="false">&times;</span>
-                        </button>
-                        {{mess}}
-                      </div>
-                  {% endfor %}
-                    <table id="example" class="table table-responsive-md table-striped table-bordered">
-                        <thead>
-                            <tr class="text-center">
-                                <th class="text-primary font-weight-bold">#</th>
-                                <th class="text-primary font-weight-bold">Customer</th>
-                                <th class="text-primary font-weight-bold">Author</th>
-                                <th class="text-primary font-weight-bold">Tipe Layanan</th>
-                                <th class="text-primary font-weight-bold">Tanggal</th>
-                                <th class="text-primary font-weight-bold">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-center">
-                                <td>1</td>
-                                <td>Ashcrofindo</td>
-                                <td>Fajar</td>
-                                <td>Maintenance</td>
-                                <td>2011/04/25</td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary btn-sm">
-                                        <span class="fas fa-edit"> Edit</span></button>
-                                    <button class="btn btn-danger btn-sm">
-                                        <span class="fas fa-trash"> Hapus</span></button>
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>2</td>
-                                <td>Ganamas</td>
-                                <td>Ferdi</td>
-                                <td>Maintenance</td>
-                                <td>2011/04/25</td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary btn-sm">
-                                        <span class="fas fa-edit"> Edit</span></button>
-                                    <button class="btn btn-danger btn-sm">
-                                        <span class="fas fa-trash"> Hapus</span></button>
-                                </td>
-                            </tr>
-                            <tr class="text-center">
-                                <td>3</td>
-                                <td>Indobeltraco</td>
-                                <td>Faisal</td>
-                                <td>Maintenance</td>
-                                <td>2011/04/25</td>
-                                <td class="text-center">
-                                    <button class="btn btn-primary btn-sm">
-                                        <span class="fas fa-edit"> Edit</span></button>
-                                    <button class="btn btn-danger btn-sm">
-                                        <span class="fas fa-trash"> Hapus</span></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <!--/Table-->
+  </div>
 
-                <!--Pagination-->
-                <nav aria-label="Page navigation">
-                    <ul class="pagination float-right pr-3">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
-                <!--/Pagination-->
-            </div>
-            <!--/Content Body-->
-        </div>
-        <!--/Content Wrapper-->
-    </div>
-    <!--/Content-->
+{% endblock content %}
 
-
-{% endblock %}
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+  <script src="/static/assets/js/demo_1/dashboard.js"></script>
+{% endblock javascripts %}

@@ -20,7 +20,7 @@ def group():
             return redirect(url_for('groups.group'))
         else:
             return redirect(url_for('groups.search',searchname=form.search.data))
-    return render_template("groups.html",group_list=grup,form=form)
+    return render_template("admingroup.html",group_list=grup,form=form)
 
 @group_bp.route('/search<searchname>', methods=['GET','POST'])
 @login_required

@@ -1,0 +1,73 @@
+{% from "macro_pagination.html" import pagination %}
+{% extends "/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="box-content">
+    {% for mess in get_flashed_messages() %}
+        <div class="alert alert-success alert-dismissible fade show mt-3" role='alert'>
+          <button type="button" class="fade close" data-dismiss='alert' aria-label='Close'>
+          <span aria-hidden="false">&times;</span>
+          </button>
+          {{mess}}
+        </div>
+    {% endfor %}
+    <!--/Content Header-->
+
+    <!--Content Body-->
+    <div class="box-body">
+        <!--Nav Search-->
+      <nav class="navbar navbar-light float-right p-3">
+        <form class="form-inline" method="POST">
+            {{form.hidden_tag()}}
+            {{form.search(class="form-control mr-sm-2 border-primary")}}
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Cari</button>
+        </form>
+        </nav>
+        <!--/Nav Search-->
+
+        <!--Table-->
+        <div class="p-3">
+            <a href="{{url_for('groups.add')}}" class="btn btn-primary" >Add Group</a>
+            <table id="example" class="table table-responsive-md table-striped table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th class="text-primary font-weight-bold">#</th>
+                        <th class="text-primary font-weight-bold">Group Name</th>
+                        <th class="text-primary font-weight-bold"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for grup in group_list.items %}
+                        <tr class="text-center">
+                            <td>{{grup.id}}</td>
+                            <td>{{grup.groupname}}</td>
+                            <td class="text-center">
+                                <a class="btn btn-warning" href="{{url_for('groups.edit',group_id=grup.id)}}">Edit</a>
+                                <a class="btn btn-danger" href="{{url_for('groups.delete',group_id=grup.id)}}">Hapus</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <!--/Table-->
+
+        <!--Pagination-->
+        {{pagination(group_list,'groups.group')}}
+        <!--/Pagination-->
+    </div>
+    <!--/Content Body-->
+</div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+  <script src="/static/assets/js/demo_1/dashboard.js"></script>
+{% endblock javascripts %}

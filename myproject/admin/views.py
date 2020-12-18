@@ -31,7 +31,7 @@ def login():
         else:
             flash("User not found or wrong Password!")
             return redirect(url_for('admin.login'))
-    return render_template('login.html',form=form)
+    return render_template('accounts/login.html',form=form)
 
 
 @admin_bp.route('/logout')

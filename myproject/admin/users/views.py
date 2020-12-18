@@ -15,7 +15,7 @@ users_bp = Blueprint('users',__name__,template_folder='templates/users')
 def user():
     if current_user.role =="admin":
         page = request.args.get('page',1,type=int)
-        users_list = User.query.order_by(User.id.desc()).paginate(page=page,per_page=5)
+        users_list = User.query.order_by(User.id.desc()).paginate(page=page,per_page=10)
         form = SearchForm()
         if form.validate_on_submit():
             users_search = User.query.filter(User.username.like('%'+form.search.data+'%')).first()
@@ -61,7 +61,7 @@ def add():
                 db.session.add(user)
                 db.session.commit()
                 flash('thank you User has registered')
-                return redirect(url_for('users.users'))
+                return redirect(url_for('users.user'))
             else:
                 flash('Username already registered')
                 return redirect(url_for('users.add'))
@@ -83,7 +83,7 @@ def edit(user_id):
             users.role = form.role.data
             db.session.commit()
             flash('Users has been updated')
-            return redirect(url_for('users.users'))
+            return redirect(url_for('users.user'))
 
         elif request.method == 'GET':
             form.username.data = users.username
@@ -104,7 +104,7 @@ def password(user_id):
             users.password = generate_password_hash(form.password.data)
             db.session.commit()
             flash('Password Changed')
-            return redirect(url_for('users.users'))
+            return redirect(url_for('users.user'))
 
         return render_template("passwordusers.html", form=form,users=users)
     else:

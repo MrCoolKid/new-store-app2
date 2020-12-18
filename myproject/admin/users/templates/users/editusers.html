@@ -1,63 +1,55 @@
-{% extends "base2.html" %}
-{% block title %}Admin Page{% endblock %}
+
+{% extends "/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
 
 {% block content %}
 
-                <!--Content-->
-                <div class="col-lg-10">
-                    <!--Content Wrapper-->
-                    <div class="box-content">
-                        <!--Content Header-->
-                        <div class="box-content-header bg-primary">
-                            <h4 class="text-white text-center">Edit Users</h4>
-                        </div>
-                        <!--/Content Header-->
+    <div class="box-body">
+        <!--Nav Search-->
 
-                        <!--Content Body-->
-                        <div class="box-body">
-                            <!--Nav Search-->
-
-                            {% for mess  in get_flashed_messages() %}
-                                <div class="alert alert-warning alert-dismissible fade show mt-3" role='alert'>
-                                  <button type="button" class="fade close" data-dismiss='alert' aria-label='Close'>
-                                  <span aria-hidden="false">&times;</span>
-                                  </button>
-                                  {{mess}}
-                                </div>
-                            {% endfor %}
-                            <nav class="navbar navbar-light float-right p-3">
-
-                            </nav>
-                            <!--/Nav Search-->
-
-                            <!--Table-->
-                            <form  action="{{url_for('users.edit',user_id=users.id)}}" method="POST">
-                                {{form.hidden_tag()}}
-                                <div class="box-content-body">
-                                  <div class="form-group">
-                                      <label for="username">{{form.username.label}}</label>
-                                      {{form.username(class="form-control form-control-md",readonly=True)}}
-                                  </div>
-
-                                  <div class="form-group">
-                                      <label for="role">{{form.role.label}}</label>
-                                      {{form.role(class="form-control form-control-md")}}
-                                  </div>
-
-                              <button class="btn btn-warning btn-block" type="submit">Update</button>
-                            </form>
-                            </div>
-                            <!--/Table-->
-                          </div>
-                        <!--/Content Body-->
-                    </div>
-                    <!--/Content Wrapper-->
-                </div>
-                <!--/Content-->
+        {% for mess  in get_flashed_messages() %}
+            <div class="alert alert-success alert-dismissible fade show mt-3" role='alert'>
+              <button type="button" class="fade close" data-dismiss='alert' aria-label='Close'>
+              <span aria-hidden="false">&times;</span>
+              </button>
+              {{mess}}
             </div>
-        <!--Container-->
+        {% endfor %}
+        <nav class="navbar navbar-light float-right p-3">
 
-    </section>
-    <!--Sidebar Akhir-->
+        </nav>
+        <!--/Nav Search-->
 
-{% endblock %}
+        <!--Table-->
+        <form  action="{{url_for('users.edit',user_id=users.id)}}" method="POST">
+            {{form.hidden_tag()}}
+            <div class="box-content-body">
+              <div class="form-group">
+                  <label for="username">{{form.username.label}}</label>
+                  {{form.username(class="form-control form-control-md",readonly=True)}}
+              </div>
+
+              <div class="form-group">
+                  <label for="role">{{form.role.label}}</label>
+                  {{form.role(class="form-control form-control-md")}}
+              </div>
+
+          <button class="btn btn-warning btn-block" type="submit">Update</button>
+        </form>
+        </div>
+        <!--/Table-->
+      </div>
+    <!--/Content Body-->
+    </div>
+    <!--/Content Wrapper-->
+    </div>
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}
+  <script src="/static/assets/js/demo_1/dashboard.js"></script>
+{% endblock javascripts %}

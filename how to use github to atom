@@ -17,7 +17,7 @@ Third things third:
 Fourth thi... Ok, I'll stop.
 
 terminal:  git commit -am "message"
-# You can just use "git commit" but it will hace no message.
+# You can just use "git commit" but it will have no message.
 # You could also use Atom
 
 terminal: git push
@@ -33,7 +33,7 @@ terminal:  git pull
 if your a contributor, not the creator, then you have to pull request like in
 this pull.png!
 then click new pull request!
-it should automaticly compare the forked version from you with the old version
+it should automaticaly compare the forked version from you with the old version
 that the creator has!!
 if not then choose it manually!!
 don't be stupid... you should remember by now!
